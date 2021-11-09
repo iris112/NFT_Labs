@@ -40,6 +40,18 @@ contract P_NFT is ERC721Enumerable, TokenForSale {
     
     return retIds;
   }
+  
+  function mintWithCountFor(uint256 count, address minter) external onlyOwner returns(uint256[] memory) {
+    require(count <= 2400, "P-NFT: MAX_COUNT_IS_2400");
+
+    uint256[] memory retIds = new uint256[](count);
+
+    for (uint256 i = 0; i < count; i++) {
+      retIds[i] = _mintItem(minter);
+    }
+    
+    return retIds;
+  }
 
   function burn(uint256 tokenId) external {
     address owner = ownerOf(tokenId);

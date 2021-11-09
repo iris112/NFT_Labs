@@ -4,8 +4,6 @@ pragma solidity 0.8.0;
 
 import "./utils/Ownable.sol";
 import "./library/SafeMath.sol";
-import "./library/Strings.sol";
-import "./library/ERC165Checker.sol";
 import "./interfaces/IERC20.sol";
 import "./interfaces/IERC721.sol";
 import "./interfaces/IERC721Util.sol";
@@ -13,17 +11,14 @@ import "./interfaces/IFactory.sol";
 import "./interfaces/ITokenForSale.sol";
 import "./library/Counters.sol";
 
-contract GameFactory is Ownable {
-  using Strings for string;
+contract Factory is Ownable {
   using SafeMath for uint256;
-  using ERC165Checker for address;
   using Counters for Counters.Counter;
   
   address public PNFTToken;
   address public OANFTToken;
   address public CNFTToken;
 
-  uint256 public claimFee = 1e16;
   Counters.Counter internal saleIdCounter;
 
   //Mapping by marketplace listing by Id to token details.
